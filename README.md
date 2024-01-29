@@ -1,6 +1,6 @@
 # vue-steps-exercise
 
-This template should help get you started developing with Vue 3 in Vite.
+![vue-steps-front](https://github.com/Aenopix/vue-steps-exercise/assets/857802/0960b774-f286-4ed7-9071-acf25835e478)
 
 ## Recommended IDE Setup
 
