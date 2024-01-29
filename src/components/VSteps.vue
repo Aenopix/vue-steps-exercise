@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { vAutoAnimate } from '@formkit/auto-animate'
 import VStepsMessage from './VStepsMessage.vue';
 
 const props = defineProps({
@@ -25,12 +26,12 @@ function showAlert() {
 </script>
 
 <template>
-  <div>
+  <div v-auto-animate>
     <button class="close" @click="isOpen = !isOpen">
       &times;
     </button>
 
-    <div v-show="isOpen" class="steps">
+    <div v-if="isOpen" class="steps">
       <div class="numbers">
         <div :class="currStep >= 1 ? 'active' : ''">1</div>
         <div :class="currStep >= 2 ? 'active' : ''">2</div>
@@ -39,8 +40,7 @@ function showAlert() {
       <VStepsMessage :step="currStep">
         {{ messages[currStep - 1] }}
         <div class="buttons">
-          <button :style="{ backgroundColor: '#e7e7e7', color: '#333' }"
-            @click="showAlert">Learn how</button>
+          <button :style="{ backgroundColor: '#e7e7e7', color: '#333' }" @click="showAlert">Learn how</button>
         </div>
       </VStepsMessage>
       <div class="buttons">
