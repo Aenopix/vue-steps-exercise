@@ -4,7 +4,10 @@ import { vAutoAnimate } from '@formkit/auto-animate'
 import VStepsMessage from './VStepsMessage.vue';
 
 const props = defineProps({
-  messages: Array,
+  messages: {
+    type: Array,
+    default: () => []
+  },
   step: {
     type: Number,
     default: 1
@@ -18,7 +21,7 @@ function handlePrevious() {
   if (currStep.value > 1) currStep.value -= 1
 }
 function handleNext() {
-  if (currStep.value < 3) currStep.value += 1
+  if (currStep.value < props.messages.length) currStep.value += 1
 }
 function showAlert() {
   alert(`Learn how to ${props.messages[currStep.value - 1]}`)
@@ -33,9 +36,7 @@ function showAlert() {
 
     <div v-if="isOpen" class="steps">
       <div class="numbers">
-        <div :class="currStep >= 1 ? 'active' : ''">1</div>
-        <div :class="currStep >= 2 ? 'active' : ''">2</div>
-        <div :class="currStep >= 3 ? 'active' : ''">3</div>
+        <div v-for="(_msg, idx) in messages" :key="idx" :class="currStep > idx ? 'active' : ''">{{ idx + 1 }}</div>
       </div>
       <VStepsMessage :step="currStep">
         {{ messages[currStep - 1] }}
